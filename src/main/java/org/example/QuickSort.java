@@ -96,7 +96,7 @@ public class QuickSort {
     }
 
     /**
-     * Partitions the collection into two sub arrays based on a pivot element
+     * Partitions the collection into two sub arrays based on a last pivot element
      * using natural ordering (if elements implement `Comparable`).
      *
      * @param list  the collection to be partitioned
