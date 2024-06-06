@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.homework1.ArrayCollection;
+import org.example.homework1.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
