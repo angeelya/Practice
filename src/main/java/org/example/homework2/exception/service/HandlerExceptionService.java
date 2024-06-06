@@ -31,6 +31,5 @@ public class HandlerExceptionService {
         resp.setContentType("application/json");
         String json = JsonService.getJson(new MessageResponse(message));
         resp.getWriter().print(json);
-
     }
 }
