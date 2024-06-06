@@ -1,4 +1,4 @@
-package org.example;
+package org.example.homework1;
 
 import java.util.Comparator;
 
@@ -10,6 +10,8 @@ import java.util.Comparator;
  * `Comparable`) and custom ordering (using a `Comparator`).
  */
 public class QuickSort {
+    private QuickSort() {
+    }
 
     /**
      * Sorts the given `ArrayCollection` in ascending order using the natural

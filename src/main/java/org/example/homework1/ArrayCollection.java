@@ -1,4 +1,4 @@
-package org.example;
+package org.example.homework1;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
  * @param <T> the generic type of elements stored in the collection
  */
 public class ArrayCollection<T> {
+    private static final String MS_ARRAY_INDEX_OUT = "Exit of out the collection range bounds";
     private T[] array, extraArray;
     private int actualSize = 0;
 
@@ -53,7 +54,7 @@ public class ArrayCollection<T> {
 
     public void add(T object, int index) {
         if (index > actualSize || index < -1)
-            throw new ArrayIndexOutOfBoundsException("Exit of out the collection range bounds");
+            throw new ArrayIndexOutOfBoundsException(MS_ARRAY_INDEX_OUT);
         else if (actualSize == array.length) {
             extend();
         }
@@ -87,7 +88,7 @@ public class ArrayCollection<T> {
      */
     public void set(int index, T object) {
         if (index > actualSize || index < -1)
-            throw new ArrayIndexOutOfBoundsException("Exit of out the collection range bounds");
+            throw new ArrayIndexOutOfBoundsException(MS_ARRAY_INDEX_OUT);
         array[index] = object;
     }
 
@@ -107,7 +108,7 @@ public class ArrayCollection<T> {
      */
     public void remove(int index) {
         if (index > actualSize || index < -1)
-            throw new ArrayIndexOutOfBoundsException("Exit of out the collection range bounds");
+            throw new ArrayIndexOutOfBoundsException(MS_ARRAY_INDEX_OUT);
         if (index > -1) {
             if (actualSize - 1 - index >= 0)
                 arrayCopy(array, index + 1, array, index, actualSize - 1 - index);
@@ -142,7 +143,7 @@ public class ArrayCollection<T> {
      */
     public T get(int index) {
         if (index > actualSize || index < -1)
-            throw new ArrayIndexOutOfBoundsException("Exit of out the collection range bounds");
+            throw new ArrayIndexOutOfBoundsException(MS_ARRAY_INDEX_OUT);
         return array[index];
     }
 
