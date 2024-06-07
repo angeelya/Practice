@@ -10,6 +10,17 @@ public class Teacher {
     private Discipline discipline;
     private List<Group> groups;
 
+    public Teacher() {
+    }
+
+    public Teacher(Long id, String name, String lastName, Discipline discipline) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.discipline = discipline;
+    }
+
+
     public Long getId() {
         return id;
     }

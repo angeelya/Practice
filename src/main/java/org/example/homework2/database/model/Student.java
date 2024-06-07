@@ -7,6 +7,16 @@ public class Student {
     private String lastName;
     private Group group;
 
+    public Student() {
+    }
+
+    public Student(Long id, String name, String lastName, Group group) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.group = group;
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,11 +1,20 @@
 package org.example.homework2.database.model;
+
 import java.util.List;
 
 
 public class Discipline {
     private Long id;
     private String disciplineName;
-    List<Teacher>  teachers;
+    List<Teacher> teachers;
+
+    public Discipline() {
+    }
+
+    public Discipline(Long id, String disciplineName) {
+        this.id = id;
+        this.disciplineName = disciplineName;
+    }
 
     public Long getId() {
         return id;
