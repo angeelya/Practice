@@ -1,5 +1,6 @@
 package org.example.homework2.dto.response;
 
+
 import java.util.List;
 
 public class TeacherResponse {
@@ -8,6 +9,16 @@ public class TeacherResponse {
     private String lastName;
     private String disciplineName;
     private List<GroupForTeacherResponse> groupForTeacherResponses;
+
+    public TeacherResponse() {
+    }
+
+    public TeacherResponse(Long id, String name, String lastName, String disciplineName) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.disciplineName = disciplineName;
+    }
 
     public Long getId() {
         return id;

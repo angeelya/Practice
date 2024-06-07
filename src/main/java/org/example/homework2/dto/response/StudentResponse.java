@@ -1,16 +1,26 @@
 package org.example.homework2.dto.response;
 
 public class StudentResponse {
-    private String id;
+    private Long id;
     private String name;
     private String lastName;
     private String groupName;
 
-    public String getId() {
+    public StudentResponse() {
+    }
+
+    public StudentResponse(Long id, String name, String lastName, String groupName) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.groupName = groupName;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -7,6 +7,14 @@ public class DisciplineResponse {
     private String discipline;
     private List<TeacherForDisciplineResponse> teacherDisciplineResponses;
 
+    public DisciplineResponse() {
+    }
+
+    public DisciplineResponse(Long id, String discipline) {
+        this.id = id;
+        this.discipline = discipline;
+    }
+
     public Long getId() {
         return id;
     }

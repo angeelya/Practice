@@ -7,6 +7,14 @@ public class GroupResponse {
     private String name;
     private List<StudentResponse> studentResponses;
 
+    public GroupResponse() {
+    }
+
+    public GroupResponse(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
