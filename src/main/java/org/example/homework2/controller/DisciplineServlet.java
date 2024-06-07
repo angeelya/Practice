@@ -1,12 +1,12 @@
 package org.example.homework2.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.homework2.dto.request.*;
+import org.example.homework2.dto.response.DisciplineResponse;
 import org.example.homework2.exception.NoAddException;
 import org.example.homework2.exception.NoUpdateException;
 import org.example.homework2.exception.NotFoundException;
@@ -17,6 +17,7 @@ import org.example.homework2.service.JsonService;
 import org.example.homework2.validation.service.ValidationService;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "DisciplineServlet", urlPatterns = {"/discipline/all", "/discipline/add",
         "/discipline/update", "/discipline/search"})
@@ -26,8 +27,7 @@ public class DisciplineServlet extends HttpServlet {
     private transient DisciplineService disciplineService;
 
     @Override
-    public void init() throws ServletException {
-        super.init();
+    public void init() {
         disciplineService = new DisciplineService();
         ValidationService.getValidator();
     }
@@ -95,7 +95,8 @@ public class DisciplineServlet extends HttpServlet {
 
     private void findAllDisciplines(HttpServletResponse resp) throws IOException {
         try {
-            String json = JsonService.getJson(disciplineService.findDisciplineAll());
+            List<DisciplineResponse> disciplineResponses =disciplineService.findDisciplineAll();
+            String json = JsonService.getJson(disciplineResponses);
             Response.makeResponse(resp, json);
         } catch (NotFoundException e) {
             HandlerExceptionService.handlerNotFoundException(e.getMessage(), resp);

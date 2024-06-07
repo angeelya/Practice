@@ -1,7 +1,6 @@
 package org.example.homework2.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,8 +23,7 @@ public class StudentServlet extends HttpServlet {
     private transient StudentService studentService;
 
     @Override
-    public void init() throws ServletException {
-        super.init();
+    public void init() {
         studentService = new StudentService();
         ValidationService.getValidator();
     }
