@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DisciplineService {
     private static final  String MS_FAILED_ADD = "Failed to add discipline", MS_SUCCESS_ADD = "Discipline adding is successful",
-            MS_FAILED_UPDATE = "Failed to update discipline", MS_SUCCESS_UPDATE = "Discipline update is successful",
+            MS_FAILED_UPDATE = "Failed to update discipline", MS_SUCCESS_UPDATE = "Discipline updating is successful",
             MS_NOT_FOUND_LIST = "No discipline found";
 
     public MessageResponse addDiscipline(DisciplineAddRequest disciplineAddRequest) throws NoAddException {
