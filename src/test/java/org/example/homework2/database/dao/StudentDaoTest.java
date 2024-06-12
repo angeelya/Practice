@@ -15,10 +15,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-@ExtendWith(MockitoExtension.class)
 
+@ExtendWith(MockitoExtension.class)
 class StudentDaoTest {
-    private static MockedStatic<DataSource> mocked;
 
     public static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:latest")
             .withDatabaseName("university")
@@ -27,78 +26,91 @@ class StudentDaoTest {
             .withPassword("mysql");
 
     @BeforeAll
-    public  static void setUp() {
+    public static void setUp() {
         mysql.start();
-        mocked = Mockito.mockStatic(DataSource.class);
     }
 
     @Test
     void shouldFindAll() throws SQLException {
-        mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        List<Student> students  = StudentDao.findAll();
-        assertEquals(5,students.size());
+        try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
+            mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
+            List<Student> students = StudentDao.findAll();
+            assertEquals(5, students.size());
+        }
     }
 
     @Test
     void shouldFindByGroupId() throws SQLException {
-        mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        Long groupId=2L;
-        List<Student> students  = StudentDao.findByGroupId(groupId);
-        assertEquals(1,students.size());
-        assertEquals(groupId,students.get(0).getGroup().getId());
+        try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
+            mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
+            Long groupId = 2L;
+            List<Student> students = StudentDao.findByGroupId(groupId);
+            assertEquals(1, students.size());
+            assertEquals(groupId, students.get(0).getGroup().getId());
+        }
     }
 
     @Test
     void shouldFindById() throws SQLException {
-        mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        Long id=1L;
-        Student student  = StudentDao.findById(id);
-        assertEquals(id,student.getId());
+        try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
+            mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
+            Long id = 1L;
+            Student student = StudentDao.findById(id);
+            assertEquals(id, student.getId());
+        }
     }
 
     @Test
     void shouldFindByKey() throws SQLException {
-        mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        String key="Angelina";
-        List<Student> students  = StudentDao.findByKey(key);
-        assertEquals(2,students.size());
-        assertTrue(students.get(0).getName().contains(key));
+        try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
+            mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
+            String key = "Angelina";
+            List<Student> students = StudentDao.findByKey(key);
+            assertEquals(2, students.size());
+            assertTrue(students.get(0).getName().contains(key));
+        }
     }
 
     @Test
     void shouldAdd() throws SQLException {
-        mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        Student student= new Student();
-        student.setName("Angelina");
-        student.setLastName("Naidenova");
-        student.setGroup(new Group(1L,"M-12"));
-        int result =StudentDao.add(student);
-        assertTrue(result>0);
-        assertEquals(student.getName(), StudentDao.findByKey(student.getName()).get(0).getName());
+        try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
+            mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
+            Student student = new Student();
+            student.setName("Angelina");
+            student.setLastName("Naidenova");
+            student.setGroup(new Group(1L, "M-12"));
+            int result = StudentDao.add(student);
+            assertTrue(result > 0);
+            assertEquals(student.getName(), StudentDao.findByKey(student.getName()).get(0).getName());
+        }
     }
 
     @Test
     void shouldUpdate() throws SQLException {
-        mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        Student student= new Student();
-        student.setId(2L);
-        student.setName("Angelina");
-        student.setLastName("Naidenova");
-        student.setGroup(new Group(1L,"M-12"));
-        int result =StudentDao.update(student);
-        assertTrue(result>0);
-        Student actual =StudentDao.findById(2L);
-        assertEquals(student.getName(), actual.getName());
-        assertEquals(student.getLastName(), actual.getLastName());
-        assertEquals(student.getGroup().getGroupName(),actual.getGroup().getGroupName());
+        try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
+            mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
+            Student student = new Student();
+            student.setId(2L);
+            student.setName("Angelina");
+            student.setLastName("Naidenova");
+            student.setGroup(new Group(1L, "M-12"));
+            int result = StudentDao.update(student);
+            assertTrue(result > 0);
+            Student actual = StudentDao.findById(2L);
+            assertEquals(student.getName(), actual.getName());
+            assertEquals(student.getLastName(), actual.getLastName());
+            assertEquals(student.getGroup().getGroupName(), actual.getGroup().getGroupName());
+        }
     }
 
     @Test
     void shouldDelete() throws SQLException {
-        mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        Long  id =1L;
-        int result = StudentDao.delete(id);
-        assertTrue(result>0);
-        assertNull(StudentDao.findById(id));
+        try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
+            mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
+            Long id = 1L;
+            int result = StudentDao.delete(id);
+            assertTrue(result > 0);
+            assertNull(StudentDao.findById(id));
+        }
     }
 }
