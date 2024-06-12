@@ -76,7 +76,7 @@ class GroupDaoTest {
     void shouldFindAll() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
         List<Group> groups=GroupDao.findAll();
-        assertEquals(3,groups.size());
+        assertEquals(4,groups.size());
     }
 
     @Test
@@ -84,7 +84,7 @@ class GroupDaoTest {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
         String key="-";
         List<Group> groups=GroupDao.findByKey(key);
-        assertEquals(3,groups.size());
+        assertEquals(4,groups.size());
     }
 
     @Test
@@ -98,8 +98,8 @@ class GroupDaoTest {
     @Test
     void addTeaching() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        Long groupId=1L,teachingId=2L;
-        int result = GroupDao.addTeaching(groupId,teachingId);
+        Long groupId=2L,teacherId=2L;
+        int result = GroupDao.addTeaching(groupId,teacherId);
         assertTrue(result>0);
     }
     @Test
@@ -113,7 +113,7 @@ class GroupDaoTest {
     @Test
     void findByName() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        String name ="M-12";
+        String name ="JK-21";
         Group group = GroupDao.findByName(name);
         assertEquals(name,group.getGroupName());
     }
