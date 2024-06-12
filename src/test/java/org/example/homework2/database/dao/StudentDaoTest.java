@@ -3,6 +3,7 @@ package org.example.homework2.database.dao;
 import org.example.homework2.database.DataSource;
 import org.example.homework2.database.model.Group;
 import org.example.homework2.database.model.Student;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,8 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,8 +20,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
+@Testcontainers
 class StudentDaoTest {
-
+@Container
     public static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:latest")
             .withDatabaseName("university")
             .withUsername("root")
@@ -29,7 +33,10 @@ class StudentDaoTest {
     public static void setUp() {
         mysql.start();
     }
-
+    @AfterAll
+    public static void tearDown() {
+        mysql.stop();
+    }
     @Test
     void shouldFindAll() throws SQLException {
         try (MockedStatic<DataSource> mocked = Mockito.mockStatic(DataSource.class)) {
