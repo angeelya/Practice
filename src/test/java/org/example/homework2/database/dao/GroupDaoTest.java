@@ -4,8 +4,10 @@ import org.example.homework2.database.DataSource;
 import org.example.homework2.database.model.Group;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.testcontainers.containers.MySQLContainer;
 
 import java.sql.SQLException;
@@ -13,6 +15,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+@ExtendWith(MockitoExtension.class)
 
 class GroupDaoTest {
     private static MockedStatic<DataSource> mocked;
@@ -42,7 +45,7 @@ class GroupDaoTest {
     void shouldAddThrowsException() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
         Group group = new Group();
-        group.setGroupName("GH-45");
+        group.setGroupName("GH-48");
         int result =GroupDao.add(group);
         assertTrue(result>0);
         assertThrows(SQLIntegrityConstraintViolationException.class,()->GroupDao.add(group));
@@ -62,7 +65,7 @@ class GroupDaoTest {
     void shouldUpdate() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
         Group group = new Group();
-        group.setId(1L);
+        group.setId(2L);
         group.setGroupName("M-14");
         int result = GroupDao.update(group);
         assertTrue(result>0);

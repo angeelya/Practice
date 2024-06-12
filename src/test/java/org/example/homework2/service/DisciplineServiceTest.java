@@ -13,13 +13,16 @@ import org.example.homework2.exception.NotFoundException;
 import org.example.homework2.mapper.DisciplineMapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+@ExtendWith(MockitoExtension.class)
 
 class DisciplineServiceTest {
     private static DisciplineService disciplineService;

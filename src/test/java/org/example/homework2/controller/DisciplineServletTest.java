@@ -15,13 +15,15 @@ import org.example.homework2.service.JsonService;
 import org.example.homework2.validation.service.ValidationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.*;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
-
+@ExtendWith(MockitoExtension.class)
 class DisciplineServletTest {
     @Mock
     private DisciplineService mockService;

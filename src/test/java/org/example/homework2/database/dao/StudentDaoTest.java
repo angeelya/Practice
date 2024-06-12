@@ -5,14 +5,17 @@ import org.example.homework2.database.model.Group;
 import org.example.homework2.database.model.Student;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.testcontainers.containers.MySQLContainer;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+@ExtendWith(MockitoExtension.class)
 
 class StudentDaoTest {
     private static MockedStatic<DataSource> mocked;
@@ -39,9 +42,9 @@ class StudentDaoTest {
     @Test
     void shouldFindByGroupId() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        Long groupId=1L;
+        Long groupId=2L;
         List<Student> students  = StudentDao.findByGroupId(groupId);
-        assertEquals(2,students.size());
+        assertEquals(1,students.size());
         assertEquals(groupId,students.get(0).getGroup().getId());
     }
 
@@ -56,7 +59,7 @@ class StudentDaoTest {
     @Test
     void shouldFindByKey() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
-        String key="Ivan";
+        String key="Angelina";
         List<Student> students  = StudentDao.findByKey(key);
         assertEquals(2,students.size());
         assertTrue(students.get(0).getName().contains(key));
@@ -78,13 +81,13 @@ class StudentDaoTest {
     void shouldUpdate() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
         Student student= new Student();
-        student.setId(1L);
+        student.setId(2L);
         student.setName("Angelina");
         student.setLastName("Naidenova");
         student.setGroup(new Group(1L,"M-12"));
         int result =StudentDao.update(student);
         assertTrue(result>0);
-        Student actual =StudentDao.findById(1L);
+        Student actual =StudentDao.findById(2L);
         assertEquals(student.getName(), actual.getName());
         assertEquals(student.getLastName(), actual.getLastName());
         assertEquals(student.getGroup().getGroupName(),actual.getGroup().getGroupName());

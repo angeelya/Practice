@@ -6,14 +6,17 @@ import org.example.homework2.database.model.Student;
 import org.example.homework2.database.model.Teacher;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.testcontainers.containers.MySQLContainer;
 
 import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+@ExtendWith(MockitoExtension.class)
 
 class TeacherDaoTest {
     private static MockedStatic<DataSource> mocked;

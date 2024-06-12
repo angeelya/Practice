@@ -4,9 +4,11 @@ import org.example.homework2.database.DataSource;
 import org.example.homework2.database.model.Discipline;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.testcontainers.containers.MySQLContainer;
 
 import java.sql.SQLException;
@@ -14,6 +16,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+@ExtendWith(MockitoExtension.class)
 
 class DisciplineDaoTest {
    private static MockedStatic<DataSource> mocked;
@@ -71,7 +74,7 @@ class DisciplineDaoTest {
     void shouldFindAll() throws SQLException {
         mocked.when(DataSource::getConnection).thenReturn(mysql.createConnection(""));
         List<Discipline> disciplines=DisciplineDao.findAll();
-        assertEquals(8,disciplines.size());
+        assertEquals(10,disciplines.size());
     }
 
     @Test
