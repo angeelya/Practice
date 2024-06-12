@@ -28,7 +28,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 @ExtendWith(MockitoExtension.class)
-//hello its
+//hello
 class TeacherServiceTest {
     private static TeacherService teacherService;
 
